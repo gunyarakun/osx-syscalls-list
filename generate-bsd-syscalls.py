@@ -6,6 +6,7 @@ import shutil
 import string
 import datetime
 import json
+import re
 
 
 # Make a temporary file of BSD syscalls without any additional shit around
@@ -63,6 +64,7 @@ def bsd_list_generate():
 			continue
 
 		line = line.replace(" (", "(")
+		line = re.sub(r',([^\s])', r', \1', line)
 		elems = line.split()
 
 		# Syscall ID
